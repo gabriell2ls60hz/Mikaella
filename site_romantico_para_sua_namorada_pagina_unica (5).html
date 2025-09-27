@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Pra você, Mikaella — Eu te amo</title>
+  <style>
+    :root{
+      --bg1: #0f172a;
+      --bg2: #3b0b3a;
+      --accent: #ff5ca8;
+      --glass: rgba(255,255,255,0.06);
+      --text: #ffeef9;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+    body{
+      background: radial-gradient(circle at 10% 20%, #2b0b3a 0%, transparent 25%),
+                  radial-gradient(circle at 90% 80%, #07203b 0%, transparent 25%),
+                  linear-gradient(135deg,var(--bg1), var(--bg2));
+      overflow:hidden;color:var(--text);
+      display:flex;align-items:center;justify-content:center;padding:20px;
+    }
+    .card{
+      width:100%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:22px;padding:24px;box-shadow:0 8px 40px rgba(0,0,0,0.5);backdrop-filter: blur(6px);
+      position:relative;z-index:2;overflow:hidden;border:1px solid rgba(255,255,255,0.04);
+    }
+    header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;text-align:center}
+    .logo{
+      height:64px;width:64px;border-radius:18px;background:linear-gradient(135deg,var(--accent),#ff8fb5);
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px;color:white;box-shadow:0 6px 20px rgba(255,92,168,0.18)
+    }
+    h1{margin:0;font-size:28px;letter-spacing:0.4px}
+    p.lead{margin:6px 0 12px;color:rgba(255,255,255,0.85);font-size:15px}
+
+    .big-message{display:flex;gap:18px;align-items:center;flex-direction:column}
+    .text-block{flex:1;text-align:center}
+    .eu-te-amo{
+      font-size:32px;font-weight:800;margin:6px 0;line-height:1.2;color:var(--text);
+      text-shadow:0 6px 30px rgba(0,0,0,0.45), 0 0 18px rgba(255,92,168,0.06);
+    }
+    .sub{font-size:15px;color:rgba(255,255,255,0.9)}
+
+    .heart-big{width:180px;height:180px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer}
+    .heart-svg{width:140px;height:140px;filter:drop-shadow(0 20px 30px rgba(203,26,103,0.28));transform-origin:center;animation:pulse 1.6s infinite ease-in-out}
+    @keyframes pulse{0%{transform:scale(0.98)}50%{transform:scale(1.06)}100%{transform:scale(0.98)}}
+
+    .floating-hearts{position:fixed;inset:0;pointer-events:none;z-index:1}
+
+    footer{margin-top:12px;color:rgba(255,255,255,0.6);font-size:13px;text-align:center}
+
+    .h{position:absolute;left:0;top:0;width:24px;height:24px;transform:translate(-50%,-50%) rotate(-45deg);}
+    .h::before,.h::after{content:'';position:absolute;width:24px;height:24px;border-radius:50%;background:var(--accent);}
+    .h::before{top:-12px;left:0}
+    .h::after{left:12px;top:0}
+
+    @media (max-width:700px){
+      .eu-te-amo{font-size:26px}
+      .heart-big{width:140px;height:140px}
+      .heart-svg{width:110px;height:110px}
+      p.lead{font-size:14px}
+      .sub{font-size:13px}
+    }
+
+    .bg-flowers{position:absolute;inset:-20%;z-index:0;opacity:0.12;filter:blur(20px);background:radial-gradient(circle at 20% 40%, #ff8fb5 0%, transparent 10%),radial-gradient(circle at 80% 60%, #7bdff0 0%, transparent 12%);transform:scale(1.15);animation:bgfloat 18s ease-in-out infinite}
+    @keyframes bgfloat{0%{transform:translateY(0) scale(1.15)}50%{transform:translateY(-18px) scale(1.17)}100%{transform:translateY(0) scale(1.15)}}
+
+    .firework {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      pointer-events: none;
+      animation: explode 1.4s ease-out forwards;
+      z-index: 3;
+    }
+    @keyframes explode {
+      from {opacity: 1; transform: translate(0,0) scale(1.2);}
+      to {opacity: 0; transform: translate(var(--x), var(--y)) scale(0.3);}
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="floating"></div>
+  <div class="card">
+    <div class="bg-flowers" aria-hidden="true"></div>
+    <header>
+      <div class="logo">❤</div>
+      <div>
+        <h1>Pra você, Mikaella</h1>
+        <p class="lead">Um cantinho feito só pra te lembrar que eu te amo — hoje, amanhã e sempre.</p>
+      </div>
+    </header>
+
+    <main class="big-message">
+      <div class="text-block">
+        <div class="eu-te-amo" id="rotating">EU TE AMO • EU TE AMO • EU TE AMO</div>
+        <div class="sub">Clique ou apenas olhe. Deixe os corações levarem o que eu sinto por você, Mikaella.</div>
+
+        <footer>
+          Feito com muito carinho para você, Mikaella 💖<br>
+          <span style="font-size:12px;color:rgba(255,255,255,0.5)">Desenvolvido por Gabriell2ls</span>
+        </footer>
+      </div>
+
+      <div class="heart-big" id="bigHeart">
+        <svg class="heart-svg" viewBox="0 0 32 29.6" aria-hidden="true">
+          <path fill="#ff5ca8" d="M23.6 0c-2.9 0-5.4 1.7-6.6 4.1C15.8 1.7 13.3 0 10.4 0 4.6 0 0 4.6 0 10.4c0 11.2 16 19.2 16 19.2s16-8 16-19.2C32 4.6 27.4 0 21.6 0z"/>
+        </svg>
+        <div id="clickCounter" style="position:absolute;bottom:6px;right:8px;font-size:16px;color:white;font-weight:bold;">0</div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const MAX = 24;
+    const container = document.getElementById('floating');
+    let running = true;
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+
+    function makeHeart(){
+      const el = document.createElement('div');
+      el.className = 'h';
+      const size = Math.floor(rand(14,42));
+      el.style.width = size+'px';
+      el.style.height = size+'px';
+      el.style.left = rand(5,95)+'%';
+      el.style.top = '110%';
+      el.style.opacity = rand(0.4,1);
+      el.style.transform = `translate(-50%,-50%) rotate(-45deg) scale(${rand(0.6,1.1)})`;
+      const accent = `hsl(${Math.floor(rand(320,350))}deg ${Math.floor(rand(70,90))}% ${Math.floor(rand(50,70))}%)`;
+      el.style.setProperty('--accent', accent);
+
+      const duration = rand(6000,16000);
+      el.animate([
+        {transform: `translate(-50%,-50%) translateY(0) rotate(-45deg) scale(${rand(0.6,1.1)})`, opacity:el.style.opacity},
+        {transform: `translate(-50%,-50%) translateY(-120vh) rotate(-45deg) translateX(${rand(-60,60)}px) scale(${rand(0.6,1.1)})`, opacity:0.1}
+      ],{duration: duration, easing:'cubic-bezier(.2,.8,.2,1)'});
+
+      container.appendChild(el);
+      setTimeout(()=>{el.remove()}, duration+50);
+    }
+
+    let ticker = setInterval(()=>{
+      if(!running) return;
+      const count = container.childElementCount;
+      if(count < MAX) makeHeart();
+    }, 450);
+
+    const rotating = document.getElementById('rotating');
+    let phrases = [
+      'EU TE AMO', 'AMO VOCÊ', 'MINHA VIDA', 'MEU AMOR', 'MEU CORAÇÃO', 'TE AMO ATÉ O INFINITO', 'MIKAELLA, MEU AMOR'
+    ];
+    let idx = 0;
+    function rotatePhrase(){
+      idx = (idx+1)%phrases.length;
+      rotating.textContent = phrases[idx] + ' • ' + phrases[(idx+1)%phrases.length] + ' • ' + phrases[(idx+2)%phrases.length];
+    }
+    setInterval(rotatePhrase, 2300);
+
+    for(let i=0;i<10;i++) setTimeout(makeHeart, i*220);
+
+    window.addEventListener('keydown',(e)=>{if(e.key.toLowerCase()==='h'){for(let i=0;i<6;i++)setTimeout(makeHeart,i*90)}});
+
+    // Contador e fogos de artifício
+    let clickCount = 0;
+    const bigHeart = document.getElementById('bigHeart');
+    const counterEl = document.getElementById('clickCounter');
+
+    function launchFireworks(){
+      for(let i=0;i<120;i++){
+        const fw = document.createElement('div');
+        fw.className = 'firework';
+        fw.style.left = (window.innerWidth/2)+'px';
+        fw.style.top = (window.innerHeight/2)+'px';
+        const angle = Math.random()*2*Math.PI;
+        const distance = Math.random()*280+100;
+        fw.style.setProperty('--x', Math.cos(angle)*distance+'px');
+        fw.style.setProperty('--y', Math.sin(angle)*distance+'px');
+        fw.style.background = `hsl(${Math.random()*360},100%,60%)`;
+        document.body.appendChild(fw);
+        setTimeout(()=>fw.remove(),1400);
+      }
+    }
+
+    bigHeart.addEventListener('click', ()=>{
+      clickCount++;
+      counterEl.textContent = clickCount;
+      for(let i=0;i<28;i++) setTimeout(makeHeart, i*45);
+      if(clickCount % 2 === 0){
+        launchFireworks();
+      }
+    });
+  </script>
+</body>
+</html>
